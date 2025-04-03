@@ -43,6 +43,7 @@ import jenkins.plugins.itemstorage.ItemStorage;
 import jenkins.plugins.itemstorage.ItemStorageDescriptor;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.verb.POST;
 
 /**
  * S3 implementation of the Item Storage extension point.
@@ -119,7 +120,8 @@ public class S3ItemStorage extends ItemStorage<S3ObjectPath> {
             return "S3 API storage";
         }
 
-        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
+        @POST
+        @SuppressWarnings("unused")
         public ListBoxModel doFillCredentialsIdItems(@QueryParameter String value) {
             if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
                 return new ListBoxModel();
@@ -127,7 +129,8 @@ public class S3ItemStorage extends ItemStorage<S3ObjectPath> {
             return new StandardListBoxModel().includeEmptyValue().withAll(possibleCredentials());
         }
 
-        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
+        @POST
+        @SuppressWarnings("unused")
         public ListBoxModel doFillRegionItems() {
             if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
                 return new ListBoxModel();
