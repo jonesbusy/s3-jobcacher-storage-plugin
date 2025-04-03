@@ -20,8 +20,12 @@ public class ClientHelper implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @SuppressWarnings("lgtm[jenkins/plaintext-storage]") // Never saved on disk
     private final String accessKey;
+
+    @SuppressWarnings("lgtm[jenkins/plaintext-storage]") // Never saved on disk
     private final String secretKey;
+
     private final String region;
     private final ProxyConfiguration proxy;
     private final String endpoint;

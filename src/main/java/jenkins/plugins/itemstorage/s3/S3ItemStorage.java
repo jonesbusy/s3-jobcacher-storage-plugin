@@ -119,7 +119,7 @@ public class S3ItemStorage extends ItemStorage<S3ObjectPath> {
             return "S3 API storage";
         }
 
-        @SuppressWarnings("unused")
+        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
         public ListBoxModel doFillCredentialsIdItems(@QueryParameter String value) {
             if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
                 return new ListBoxModel();
@@ -127,8 +127,11 @@ public class S3ItemStorage extends ItemStorage<S3ObjectPath> {
             return new StandardListBoxModel().includeEmptyValue().withAll(possibleCredentials());
         }
 
-        @SuppressWarnings("unused")
+        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
         public ListBoxModel doFillRegionItems() {
+            if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+                return new ListBoxModel();
+            }
             ListBoxModel model = new ListBoxModel();
             for (Regions r : Regions.values()) {
                 model.add(r.getName(), r.getName());

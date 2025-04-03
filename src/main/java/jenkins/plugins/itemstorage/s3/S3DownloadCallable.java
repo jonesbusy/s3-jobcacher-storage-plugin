@@ -41,6 +41,8 @@ public class S3DownloadCallable extends S3Callable<Void> {
     private static final long serialVersionUID = 1L;
 
     private final String bucketName;
+
+    @SuppressWarnings("lgtm[jenkins/plaintext-storage]") // Key of the object. Not secret
     private final String key;
 
     public S3DownloadCallable(ClientHelper helper, String bucketName, String key) {

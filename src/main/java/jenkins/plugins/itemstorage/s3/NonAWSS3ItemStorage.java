@@ -160,7 +160,7 @@ public class NonAWSS3ItemStorage extends ItemStorage<S3ObjectPath> {
             return "S3 API compatible storage";
         }
 
-        @SuppressWarnings("unused")
+        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
         public ListBoxModel doFillCredentialsIdItems(@QueryParameter String value) {
             if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
                 return new ListBoxModel();
@@ -168,7 +168,7 @@ public class NonAWSS3ItemStorage extends ItemStorage<S3ObjectPath> {
             return new StandardListBoxModel().withAll(possibleCredentials());
         }
 
-        @SuppressWarnings("unused")
+        @SuppressWarnings({"lgtm[jenkins/csrf]", "unused"})
         public ListBoxModel doFillSignerVersionItems() {
             ListBoxModel model = new ListBoxModel();
             model.add("None", "");

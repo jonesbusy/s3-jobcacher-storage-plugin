@@ -36,6 +36,8 @@ public class S3UploadCallable extends S3BaseUploadCallable<Void> {
     private static final long serialVersionUID = 1L;
 
     private final String bucketName;
+
+    @SuppressWarnings("lgtm[jenkins/plaintext-storage]") // Key of the object. Not secret
     private final String key;
 
     public S3UploadCallable(
