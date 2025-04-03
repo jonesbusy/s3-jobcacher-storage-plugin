@@ -4,6 +4,11 @@ This plugin is an extension of the [jobcacher-plugin](https://plugins.jenkins.io
 
 This was extracted from `jobcacher` since this [PR](https://github.com/jenkinsci/jobcacher-plugin/pull/408)
 
+> [!WARNING]
+> Users upgrading from version `640.v424a_7cc1087a_` of [jobcacher](https://plugins.jenkins.io/jobcacher/) and above AND using S3 storage MUST install this plugin.
+>
+> Configuration is kept in the same place, but the plugin will not work with S3 storage without this extension.
+
 ## Introduction
 
 ### Getting started
