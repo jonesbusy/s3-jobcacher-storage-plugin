@@ -22,7 +22,7 @@ public class MinioMcContainer extends GenericContainer<MinioMcContainer> {
     protected void containerIsStarted(InspectContainerResponse containerInfo) {
         try {
             execSecure(
-                    "mc config host add test-minio http://%s:9000 %s %s",
+                    "mc alias set test-minio http://%s:9000 %s %s",
                     minio.getNetworkAliases().get(0), minio.accessKey(), minio.secretKey());
         } catch (Exception e) {
             throw new IllegalStateException(e);
