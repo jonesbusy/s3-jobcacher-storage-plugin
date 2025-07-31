@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import jenkins.model.Jenkins;
-import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 /**
@@ -178,7 +177,7 @@ public class S3Profile {
     }
 
     private String withPrefix(String path) {
-        if (StringUtils.isBlank(prefix)) {
+        if (prefix == null || prefix.trim().isEmpty()) {
             return path;
         } else {
             return String.format("%s%s", prefix, path);
