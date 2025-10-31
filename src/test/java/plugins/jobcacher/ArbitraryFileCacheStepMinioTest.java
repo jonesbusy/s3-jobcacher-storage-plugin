@@ -65,15 +65,13 @@ class ArbitraryFileCacheStepMinioTest {
 
         // GIVEN
         WorkflowJob job = j.createProject(WorkflowJob.class);
-        job.setDefinition(new CpsFlowDefinition(
-                """
+        job.setDefinition(new CpsFlowDefinition("""
                 node {
                   cache(maxCacheSize: 250, caches: [arbitraryFileCache(path: 'sub', compressionMethod: 'TARGZ')]){
                     sh 'mkdir sub'
                     sh 'echo sub-content > sub/file'
                   }
-                }""",
-                true));
+                }""", true));
 
         // WHEN
         WorkflowRun result = job.scheduleBuild2(0).waitForStart();
@@ -85,15 +83,13 @@ class ArbitraryFileCacheStepMinioTest {
         j.assertLogContains("Creating cache...", result);
 
         // GIVEN
-        job.setDefinition(new CpsFlowDefinition(
-                """
+        job.setDefinition(new CpsFlowDefinition("""
                 node {
                   sh 'rm -rf *'
                   cache(skipSave: true, maxCacheSize: 250, caches: [arbitraryFileCache(path: 'sub', compressionMethod: 'TARGZ')]){
                     sh 'rm sub/file'
                   }
-                }""",
-                true));
+                }""", true));
 
         // WHEN
         result = job.scheduleBuild2(0).waitForStart();
@@ -104,15 +100,13 @@ class ArbitraryFileCacheStepMinioTest {
         j.assertLogContains("Skipping save due to skipSave being set to true.", result);
 
         // GIVEN
-        job.setDefinition(new CpsFlowDefinition(
-                """
+        job.setDefinition(new CpsFlowDefinition("""
                 node {
                   sh 'rm -rf *'
                   cache(maxCacheSize: 250, caches: [arbitraryFileCache(path: 'sub', compressionMethod: 'TARGZ')]){
                     sh 'cat sub/file'
                   }
-                }""",
-                true));
+                }""", true));
 
         // WHEN
         result = job.scheduleBuild2(0).waitForStart();
